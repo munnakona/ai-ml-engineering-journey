@@ -1,0 +1,103 @@
+# ==============================
+# Python
+# ==============================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==============================
+# Virtual Environments
+# ==============================
+
+.venv/
+venv/
+env/
+ENV/
+
+# Conda environments
+conda-env/
+.conda/
+
+# ==============================
+# Environment Variables / Secrets
+# ==============================
+
+.env
+.env.*
+!.env.example
+
+# API Keys / Credentials
+*.pem
+*.key
+*.crt
+credentials.json
+service-account.json
+secrets.json
+
+# ==============================
+# Jupyter
+# ==============================
+
+.ipynb_checkpoints/
+
+# ==============================
+# macOS
+# ==============================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ==============================
+# VS Code
+# ==============================
+
+.vscode/
+
+# ==============================
+# Logs
+# ==============================
+
+*.log
+
+# ==============================
+# Build / Distribution
+# ==============================
+
+build/
+dist/
+*.egg-info/
+
+# ==============================
+# Machine Learning
+# ==============================
+
+models/
+checkpoints/
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+*.onnx
+
+# ==============================
+# Data
+# ==============================
+
+data/raw/
+data/processed/
+
+*.csv
+*.parquet
+*.feather
+
+# ==============================
+# Temporary Files
+# ==============================
+
+*.tmp
+*.temp
+*.swp
+*.swo
