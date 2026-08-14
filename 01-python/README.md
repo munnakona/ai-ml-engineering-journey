@@ -1,4 +1,3 @@
-
 # Day 1 — Python Fundamentals
 
 ## Overview
@@ -816,6 +815,686 @@ Topics:
 * Practical AI/ML examples
 
 ---
+
+
+
+# Day 2 — Python Data Structures: Lists
+
+## Overview
+
+Day 2 focused on Python Lists and practical data manipulation.
+
+Lists are one of the most important Python data structures for AI/ML because they are frequently used to store:
+
+- Training data
+- Features
+- Predictions
+- AI tools
+- Model outputs
+- Tokens
+- Documents
+- Collections of objects
+
+The goal was to understand how to create, access, modify, organize, and process lists using Python.
+
+---
+
+## 1. Creating Lists
+
+A Python list is created using square brackets `[]`.
+
+```python
+ai_tools = [
+    "ChatGPT",
+    "Claude",
+    "Gemini"
+]
+
+print(ai_tools)
+
+print(type(ai_tools))
+```
+
+
+
+Output:
+
+['ChatGPT', 'Claude', 'Gemini']
+<class 'list'>
+2. List Length
+
+Use len() to determine the number of elements in a list.
+
+print(len(ai_tools))
+
+Output:
+
+3
+3. Positive Indexing
+
+Python list indexing starts from 0.
+
+Index 0 → First element
+Index 1 → Second element
+Index 2 → Third element
+
+Example:
+
+print(ai_tools[0])
+print(ai_tools[1])
+print(ai_tools[2])
+
+Output:
+
+ChatGPT
+Claude
+Gemini
+Important
+
+Python uses zero-based indexing.
+
+Therefore:
+
+ai_tools[0]
+
+means the first element, not the second.
+
+4. Negative Indexing
+
+Negative indexes allow us to access elements from the end of a list.
+
+-1 → Last element
+-2 → Second-last element
+-3 → Third-last element
+
+Example:
+
+print(ai_tools[-1])
+print(ai_tools[-2])
+print(ai_tools[-3])
+
+Output:
+
+Gemini
+Claude
+ChatGPT
+Key Concept
+ai_tools[-1]
+
+always refers to the last element of the list.
+
+5. List Slicing
+
+Slicing allows us to extract a portion of a list.
+
+Syntax:
+
+list[start:stop]
+
+The start index is included.
+
+The stop index is excluded.
+
+Example:
+
+ai_tools = [
+    "ChatGPT",
+    "GitHub Copilot",
+    "Claude",
+    "Gemini",
+    "Llama",
+    "LangChain",
+    "LangGraph"
+]
+
+print(ai_tools[0:3])
+
+Output:
+
+['ChatGPT', 'GitHub Copilot', 'Claude']
+Other slicing examples
+
+First three:
+
+ai_tools[:3]
+
+From index 2 to the end:
+
+ai_tools[2:]
+
+Complete list:
+
+ai_tools[:]
+Important Rule
+[start:stop]
+
+start → included
+stop  → excluded
+6. Modifying List Elements
+
+Python lists are mutable.
+
+This means existing elements can be changed after the list is created.
+
+Example:
+
+ai_tools[2] = "Claude"
+
+General syntax:
+
+list[index] = new_value
+
+Example:
+
+ai_tools[4] = "Llama"
+
+The original list is modified.
+
+7. append()
+
+append() adds one element to the end of a list.
+
+Example:
+
+ai_tools.append("OpenAI API")
+
+If the list was:
+
+['ChatGPT', 'Claude', 'Gemini']
+
+after append():
+
+['ChatGPT', 'Claude', 'Gemini', 'OpenAI API']
+Important
+
+append() adds exactly one object to the list.
+
+8. insert()
+
+insert() adds an element at a specific index.
+
+Syntax:
+
+list.insert(index, value)
+
+Example:
+
+ai_tools.insert(2, "PyTorch")
+
+The element is inserted at index 2.
+
+Existing elements from that position onward move to the right.
+
+Important
+
+Adding or removing elements can change the indexes of subsequent elements.
+
+9. remove()
+
+remove() removes an element based on its value.
+
+Example:
+
+ai_tools.remove("Gemini")
+
+Python searches for "Gemini" and removes the first matching occurrence.
+
+Important
+
+remove() works with the value, not the index.
+
+10. pop()
+
+pop() removes an element using its index.
+
+Example:
+
+removed_tool = ai_tools.pop(2)
+
+print("Removed:", removed_tool)
+
+The removed element is returned by pop().
+
+Example output:
+
+Removed: Claude
+Default behavior
+
+If no index is provided:
+
+ai_tools.pop()
+
+Python removes and returns the last element.
+
+11. del
+
+del can remove an element using its index.
+
+Example:
+
+del ai_tools[2]
+
+This removes the element currently at index 2.
+
+Unlike pop(), del does not return the removed value.
+
+12. remove() vs pop() vs del
+    Operation	Removes By	Returns Removed Value
+    remove()	Value	No
+    pop()	Index	Yes
+    del	Index	No
+    Easy way to remember
+    remove() → remove this VALUE
+    pop()    → remove this INDEX and return it
+    del      → delete this INDEX
+13. extend()
+
+extend() adds multiple elements from another iterable, such as a list.
+
+Example:
+
+new_tools = [
+    "Ollama",
+    "LangChain",
+    "LangGraph"
+]
+
+ai_tools.extend(new_tools)
+
+The elements are added individually.
+
+append() vs extend()
+
+Using append():
+
+ai_tools.append(["Ollama", "LangChain"])
+
+creates a nested list:
+
+['ChatGPT', ['Ollama', 'LangChain']]
+
+Using extend():
+
+ai_tools.extend(["Ollama", "LangChain"])
+
+adds the elements individually:
+
+['ChatGPT', 'Ollama', 'LangChain']
+14. sort()
+
+sort() sorts the original list.
+
+Example:
+
+ai_tools.sort()
+
+This sorts strings alphabetically.
+
+Example:
+
+['Azure OpenAI', 'ChatGPT', 'Claude', 'Gemini', 'LangGraph']
+Reverse sorting
+ai_tools.sort(reverse=True)
+
+This sorts the list in descending order.
+
+Important
+
+sort() modifies the original list.
+
+15. reverse()
+
+reverse() reverses the current order of the list.
+
+Example:
+
+ai_tools.reverse()
+
+If the list is:
+
+['Gemini', 'ChatGPT', 'Claude']
+
+after reverse():
+
+['Claude', 'ChatGPT', 'Gemini']
+Important Difference
+sort()
+    ↓
+Sort based on values
+
+reverse()
+    ↓
+Simply reverse the current order
+
+reverse() does not perform alphabetical sorting.
+
+16. count()
+
+count() returns how many times a value occurs in a list.
+
+Example:
+
+ai_models = [
+    "GPT",
+    "Gemini",
+    "GPT",
+    "Claude",
+    "Gemini",
+    "GPT",
+    "Llama"
+]
+
+print(ai_models.count("GPT"))
+print(ai_models.count("Gemini"))
+
+Output:
+
+3
+2
+17. index()
+
+index() returns the index of the first occurrence of a value.
+
+Example:
+
+print(ai_models.index("GPT"))
+
+Output:
+
+0
+
+Even though "GPT" appears multiple times, index() returns the first matching position.
+
+Important
+list.index(value)
+
+returns the first occurrence.
+
+18. Looping Through Lists
+
+A for loop can process each element in a list.
+
+Example:
+
+ai_tools = [
+    "ChatGPT",
+    "Claude",
+    "Gemini",
+    "Llama",
+    "LangChain",
+    "LangGraph"
+]
+
+for tool in ai_tools:
+    print("Learning AI Tool:", tool)
+
+Output:
+
+Learning AI Tool: ChatGPT
+Learning AI Tool: Claude
+Learning AI Tool: Gemini
+Learning AI Tool: Llama
+Learning AI Tool: LangChain
+Learning AI Tool: LangGraph
+Important Concept
+
+In:
+
+for tool in ai_tools:
+
+tool is simply the loop variable.
+
+It represents the current element.
+
+19. Lists with Conditional Logic
+
+Lists can be combined with if conditions.
+
+Example:
+
+for tool in ai_tools:
+
+    if tool == "LangChain" or tool == "LangGraph":
+        print(tool, "→ AI Framework")
+    else:
+        print(tool, "→ AI Model/Tool")
+
+Output:
+
+ChatGPT → AI Model/Tool
+Claude → AI Model/Tool
+Gemini → AI Model/Tool
+Llama → AI Model/Tool
+LangChain → AI Framework
+LangGraph → AI Framework
+20. Nested Lists
+
+A list can contain other lists.
+
+Example:
+
+ai_categories = [
+    ["ChatGPT", "Claude", "Gemini"],
+    ["LangChain", "LangGraph"],
+    ["PyTorch", "TensorFlow", "Scikit-learn"]
+]
+
+This creates a list containing three inner lists.
+
+Conceptually:
+
+ai_categories
+│
+├── AI Models
+│   ├── ChatGPT
+│   ├── Claude
+│   └── Gemini
+│
+├── AI Frameworks
+│   ├── LangChain
+│   └── LangGraph
+│
+└── ML Frameworks
+    ├── PyTorch
+    ├── TensorFlow
+    └── Scikit-learn
+21. Accessing Nested Lists
+
+Access the first category:
+
+print(ai_categories[0])
+
+Output:
+
+['ChatGPT', 'Claude', 'Gemini']
+
+Access Claude:
+
+print(ai_categories[0][1])
+
+Output:
+
+Claude
+Nested indexing pattern
+outer_list[outer_index][inner_index]
+22. Nested Loops
+
+Nested lists can be processed using nested for loops.
+
+Example:
+
+for category in ai_categories:
+
+    for tool in category:
+        print("AI Technology:", tool)
+
+Output:
+
+AI Technology: ChatGPT
+AI Technology: Claude
+AI Technology: Gemini
+AI Technology: LangChain
+AI Technology: LangGraph
+AI Technology: PyTorch
+AI Technology: TensorFlow
+AI Technology: Scikit-learn
+Concept
+Outer loop
+    ↓
+Get one category
+    ↓
+Inner loop
+    ↓
+Process each technology
+Day 2 Mini Project — AI Technology Inventory
+Objective
+
+Create a structured inventory of AI models, AI frameworks, and ML frameworks.
+
+ai_technology_inventory = [
+    ["AI Models", ["ChatGPT", "Claude", "Gemini", "Llama"]],
+    ["AI Frameworks", ["LangChain", "LangGraph"]],
+    ["ML Frameworks", ["PyTorch", "TensorFlow", "Scikit-learn"]]
+]
+
+The program processes the nested structure using loops.
+
+Example:
+
+print("===== AI TECHNOLOGY INVENTORY =====")
+
+for category in ai_technology_inventory:
+
+    category_name = category[0]
+    tools = category[1]
+
+    print(category_name + ":")
+
+    for tool in tools:
+        print(" - " + tool)
+
+total_technologies = 0
+
+for category in ai_technology_inventory:
+    tools = category[1]
+    total_technologies += len(tools)
+
+print("Total Categories:", len(ai_technology_inventory))
+print("Total Technologies:", total_technologies)
+Output
+===== AI TECHNOLOGY INVENTORY =====
+
+AI Models:
+
+- ChatGPT
+- Claude
+- Gemini
+- Llama
+
+AI Frameworks:
+
+- LangChain
+- LangGraph
+
+ML Frameworks:
+
+- PyTorch
+- TensorFlow
+- Scikit-learn
+
+Total Categories: 3
+Total Technologies: 9
+Day 2 — Key Lessons
+
+1. Python uses zero-based indexing
+   First element → index 0
+   Second element → index 1
+2. Lists are mutable
+
+Existing list elements can be changed.
+
+ai_tools[2] = "Claude"
+3. Indexes can change
+
+Adding or removing elements can shift the indexes of other elements.
+
+4. append() and extend() are different
+   append() → Adds one object
+   extend() → Adds multiple elements
+5. remove(), pop(), and del are different
+   remove() → Value
+   pop()    → Index + returns removed value
+   del      → Index
+6. sort() and reverse() are different
+   sort()    → Sorts the values
+   reverse() → Reverses the current order
+7. Data structure design matters
+
+Good data structures can reduce unnecessary if/elif logic and make programs easier to maintain.
+
+Day 2 — Practical Skills
+
+During Day 2, the following practical skills were demonstrated:
+
+Creating lists
+Accessing list elements
+Changing list elements
+Adding elements
+Removing elements
+Sorting
+Reversing
+Counting
+Searching
+Iterating
+Nested data structures
+Nested loops
+Dynamic calculations
+Day 2 Status
+
+COMPLETED ✅
+
+Topics Completed
+ Creating Lists
+ type()
+ len()
+ Positive Indexing
+ Negative Indexing
+ Slicing
+ Modifying List Elements
+ append()
+ insert()
+ remove()
+ pop()
+ del
+ extend()
+ sort()
+ reverse()
+ count()
+ index()
+ List Iteration
+ Conditional Logic
+ Nested Lists
+ Nested Loops
+ AI Technology Inventory Mini Project
+Day 2 — Learning Principle
+
+Good programming is not only about writing code that works. It is also about choosing data structures that make the code simple, readable, reusable, and scalable.
+
+Next
+Day 3 — Python Tuples, Sets and Dictionaries
+
+Next we will learn:
+
+Tuples
+Tuple indexing
+Tuple immutability
+Sets
+Set operations
+Dictionaries
+Dictionary keys and values
+Nested dictionaries
+Lists vs Tuples vs Sets vs Dictionaries
+Practical AI/ML data examples
 
 ## Learning Principle
 
