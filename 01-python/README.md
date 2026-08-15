@@ -799,7 +799,6 @@ The ultimate goal is to combine Python and AI with existing DevOps experience to
 
 Next:
 
-
 # Day 2 — Python Lists
 
 > **Focus:** Understanding Python Lists through hands-on practice and an AI Technology Inventory mini-project.
@@ -1570,3 +1569,835 @@ Upcoming topics:
 - Nested dictionaries
 - Lists vs Tuples vs Sets vs Dictionaries
 - Practical AI/ML examples
+
+
+
+# Day 3 — Tuples, Sets & Dictionaries
+
+> **Focus:** Understanding Python Tuples, Sets, and Dictionaries through hands-on practice and an AI Model Registry mini-project.
+
+## 🎯 Objective
+
+Day 3 focused on three important Python data structures:
+
+- Tuples
+- Sets
+- Dictionaries
+
+The goal was to understand when to use each structure, how to access and modify data, and how these structures can be combined to represent real-world AI/ML information.
+
+---
+
+# 1. Tuples
+
+A tuple is an ordered collection of values.
+
+Tuples use parentheses:
+
+```python
+ai_tools = (
+    "ChatGPT",
+    "Claude",
+    "Gemini",
+    "LangChain",
+    "LangGraph"
+)
+```
+
+Check the type:
+
+```python
+print(type(ai_tools))
+```
+
+Output:
+
+```text
+<class 'tuple'>
+```
+
+Check the length:
+
+```python
+print("Number of AI tools:", len(ai_tools))
+```
+
+## Tuple Indexing
+
+Tuples support zero-based indexing just like lists.
+
+```python
+print(ai_tools[0])
+print(ai_tools[-1])
+```
+
+Output:
+
+```text
+ChatGPT
+LangGraph
+```
+
+## Tuple Slicing
+
+```python
+print(ai_tools[1:4])
+```
+
+Output:
+
+```text
+('Claude', 'Gemini', 'LangChain')
+```
+
+## Tuple Immutability
+
+Tuples are **immutable**. Existing elements cannot be changed.
+
+```python
+ai_tools[0] = "GPT"
+```
+
+This produces:
+
+```text
+TypeError: 'tuple' object does not support item assignment
+```
+
+### Key Concept
+
+```text
+List  → Mutable
+Tuple → Immutable
+```
+
+Use a tuple when the collection should remain fixed.
+
+---
+
+# 2. Tuple Unpacking
+
+Tuple values can be assigned to multiple variables.
+
+```python
+ai_model = (
+    "GPT",
+    "OpenAI",
+    "LLM"
+)
+
+name, provider, model_type = ai_model
+
+print("Name:", name)
+print("Provider:", provider)
+print("Type:", model_type)
+```
+
+Output:
+
+```text
+Name: GPT
+Provider: OpenAI
+Type: LLM
+```
+
+Another example:
+
+```python
+devops_stack = (
+    "Jenkins",
+    "Docker",
+    "Kubernetes"
+)
+
+tool1, tool2, tool3 = devops_stack
+
+print("Tool 1:", tool1)
+print("Tool 2:", tool2)
+print("Tool 3:", tool3)
+```
+
+---
+
+# 3. Tuple Methods
+
+## count()
+
+Counts how many times a value appears.
+
+```python
+ai_models = (
+    "GPT",
+    "Gemini",
+    "GPT",
+    "Claude",
+    "Gemini",
+    "GPT",
+    "Llama"
+)
+
+print(ai_models.count("GPT"))
+print(ai_models.count("Gemini"))
+```
+
+Output:
+
+```text
+3
+2
+```
+
+## index()
+
+Returns the index of the first occurrence.
+
+```python
+print(ai_models.index("Claude"))
+print(ai_models.index("Llama"))
+```
+
+Output:
+
+```text
+3
+6
+```
+
+---
+
+# 4. List vs Tuple
+
+| Feature      | List   | Tuple  |
+| ------------ | ------ | ------ |
+| Syntax       | `[]` | `()` |
+| Ordered      | Yes    | Yes    |
+| Indexing     | Yes    | Yes    |
+| Slicing      | Yes    | Yes    |
+| Mutable      | Yes    | No     |
+| `append()` | Yes    | No     |
+| `remove()` | Yes    | No     |
+| `count()`  | Yes    | Yes    |
+| `index()`  | Yes    | Yes    |
+
+> Use a **List** when the data may change. Use a **Tuple** when the data should remain fixed.
+
+---
+
+# 5. Sets
+
+A set is a collection that stores **unique values**.
+
+```python
+ai_tools = {
+    "ChatGPT",
+    "Claude",
+    "Gemini",
+    "ChatGPT",
+    "Claude",
+    "LangChain"
+}
+
+print(ai_tools)
+print(type(ai_tools))
+print("Number of unique tools:", len(ai_tools))
+```
+
+Output contains only unique values:
+
+```text
+<class 'set'>
+Number of unique tools: 4
+```
+
+### Key Concept
+
+```text
+List → Duplicates allowed
+Set  → Unique values
+```
+
+The display order of a set should not be relied upon.
+
+---
+
+# 6. Adding to a Set
+
+Use `add()` to add one value.
+
+```python
+ai_tools.add("Llama")
+ai_tools.add("LangGraph")
+```
+
+Adding an existing value does not create a duplicate:
+
+```python
+ai_tools.add("ChatGPT")
+```
+
+---
+
+# 7. remove() vs discard()
+
+### remove()
+
+```python
+ai_tools.remove("Claude")
+```
+
+If the value does not exist, `remove()` raises a `KeyError`.
+
+### discard()
+
+```python
+ai_tools.discard("Claude")
+```
+
+If the value does not exist, `discard()` does nothing.
+
+```text
+remove()  → Missing value causes KeyError
+discard() → Missing value is ignored
+```
+
+---
+
+# 8. Set Operations
+
+Example:
+
+```python
+devops_tools = {
+    "Python",
+    "Docker",
+    "Kubernetes",
+    "Jenkins",
+    "Linux"
+}
+
+ai_tools = {
+    "Python",
+    "LangChain",
+    "LangGraph",
+    "Docker",
+    "Linux"
+}
+```
+
+## Union
+
+```python
+all_tools = devops_tools | ai_tools
+```
+
+Returns all unique values from both sets.
+
+## Intersection
+
+```python
+common_tools = devops_tools & ai_tools
+```
+
+Returns values present in both sets:
+
+```text
+Python
+Docker
+Linux
+```
+
+## Difference
+
+```python
+devops_only = devops_tools - ai_tools
+ai_only = ai_tools - devops_tools
+```
+
+Results:
+
+```text
+DevOps only:
+Jenkins
+Kubernetes
+
+AI only:
+LangChain
+LangGraph
+```
+
+### Remember
+
+```text
+| → Union        → Everything
+& → Intersection → Common values
+- → Difference   → Only in the first set
+```
+
+---
+
+# 9. Dictionaries
+
+A dictionary stores data as **key-value pairs**.
+
+```python
+ai_model = {
+    "name": "GPT",
+    "provider": "OpenAI",
+    "type": "LLM",
+    "category": "Generative AI"
+}
+```
+
+Structure:
+
+```text
+name      → GPT
+provider  → OpenAI
+type      → LLM
+category  → Generative AI
+```
+
+Check the type:
+
+```python
+print(type(ai_model))
+```
+
+Output:
+
+```text
+<class 'dict'>
+```
+
+---
+
+# 10. Accessing Dictionary Values
+
+Dictionaries are accessed using keys.
+
+```python
+print("Name:", ai_model["name"])
+print("Provider:", ai_model["provider"])
+print("Type:", ai_model["type"])
+print("Category:", ai_model["category"])
+```
+
+---
+
+# 11. Updating and Adding Dictionary Values
+
+Update an existing key:
+
+```python
+ai_model["name"] = "GPT-5"
+```
+
+Add a new key:
+
+```python
+ai_model["context_window"] = 128000
+ai_model["temperature"] = 0.7
+```
+
+### Key Concept
+
+```python
+dictionary["key"] = value
+```
+
+does two things:
+
+```text
+Existing key → UPDATE
+New key      → ADD
+```
+
+---
+
+# 12. Removing Dictionary Data
+
+## pop()
+
+Removes a key and returns its value.
+
+```python
+removed_temperature = ai_model.pop("temperature")
+```
+
+## del
+
+Removes a specific key.
+
+```python
+del ai_model["context_window"]
+```
+
+## clear()
+
+Removes all key-value pairs.
+
+```python
+ai_model.clear()
+print(ai_model)
+```
+
+Output:
+
+```text
+{}
+```
+
+### Remember
+
+```text
+pop()   → Remove key + return value
+del     → Remove key
+clear() → Remove everything
+```
+
+---
+
+# 13. Dictionary keys(), values() and items()
+
+```python
+print(ai_model.keys())
+print(ai_model.values())
+print(ai_model.items())
+```
+
+### Remember
+
+```text
+keys()   → Keys
+values() → Values
+items()  → Key + Value
+```
+
+---
+
+# 14. Looping Through Dictionaries
+
+Loop through keys:
+
+```python
+for key in ai_model:
+    print("Key:", key)
+```
+
+Loop through values:
+
+```python
+for value in ai_model.values():
+    print("Value:", value)
+```
+
+Loop through key-value pairs:
+
+```python
+for key, value in ai_model.items():
+    print(key, "→", value)
+```
+
+Output:
+
+```text
+name → GPT-5
+provider → OpenAI
+type → LLM
+context_window → 128000
+temperature → 0.7
+```
+
+This pattern is especially useful when processing structured data and JSON/API responses.
+
+---
+
+# 15. Nested Dictionaries
+
+A dictionary can contain other dictionaries as values.
+
+```python
+ai_models = {
+    "GPT": {
+        "provider": "OpenAI",
+        "type": "LLM"
+    },
+    "Claude": {
+        "provider": "Anthropic",
+        "type": "LLM"
+    },
+    "Gemini": {
+        "provider": "Google",
+        "type": "LLM"
+    },
+    "Llama": {
+        "provider": "Meta",
+        "type": "LLM"
+    }
+}
+```
+
+Access nested data:
+
+```python
+print(ai_models["GPT"]["provider"])
+print(ai_models["Claude"]["provider"])
+print(ai_models["Gemini"]["provider"])
+```
+
+Pattern:
+
+```python
+dictionary["outer_key"]["inner_key"]
+```
+
+---
+
+# 16. Looping Through Nested Dictionaries
+
+```python
+for model, details in ai_models.items():
+    print("Model:", model)
+    print("Provider:", details["provider"])
+    print("Type:", details["type"])
+    print()
+```
+
+This combines:
+
+```text
+Dictionary
++
+Nested Dictionary
++
+items()
++
+Tuple Unpacking
++
+for Loop
+```
+
+---
+
+# 🚀 Day 3 Mini Project — AI Model Registry
+
+## Objective
+
+Build an AI Model Registry using Lists, Tuples, Sets, Dictionaries, Nested Dictionaries, and Loops.
+
+### Final Project Code
+
+```python
+ai_models = {
+    "GPT": {
+        "provider": "OpenAI",
+        "type": "LLM"
+    },
+    "Claude": {
+        "provider": "Anthropic",
+        "type": "LLM"
+    },
+    "Gemini": {
+        "provider": "Google",
+        "type": "LLM"
+    },
+    "Llama": {
+        "provider": "Meta",
+        "type": "LLM"
+    }
+}
+
+# Tuple: fixed model categories
+model_categories = (
+    "LLM",
+    "Generative AI",
+    "Foundation Model"
+)
+
+# Set: store unique providers
+providers = set()
+
+for model, details in ai_models.items():
+    providers.add(details["provider"])
+
+# List: store model names
+model_names = []
+
+for model in ai_models:
+    model_names.append(model)
+
+# Display AI Model Registry
+print("===== AI MODEL REGISTRY =====")
+
+for model, details in ai_models.items():
+    print("Model:", model)
+    print("Provider:", details["provider"])
+    print("Type:", details["type"])
+    print()
+
+# Registry Summary
+print("===== REGISTRY SUMMARY =====")
+print("Total Models:", len(ai_models))
+print("Total Providers:", len(providers))
+print("Model Names:", model_names)
+print("Model Categories:", model_categories)
+```
+
+### Final Output
+
+```text
+===== AI MODEL REGISTRY =====
+
+Model: GPT
+Provider: OpenAI
+Type: LLM
+
+Model: Claude
+Provider: Anthropic
+Type: LLM
+
+Model: Gemini
+Provider: Google
+Type: LLM
+
+Model: Llama
+Provider: Meta
+Type: LLM
+
+===== REGISTRY SUMMARY =====
+Total Models: 4
+Total Providers: 4
+Model Names: ['GPT', 'Claude', 'Gemini', 'Llama']
+Model Categories: ('LLM', 'Generative AI', 'Foundation Model')
+```
+
+---
+
+# 💡 Key Lessons
+
+## List
+
+```text
+Mutable
+Ordered
+Duplicates allowed
+Uses []
+```
+
+## Tuple
+
+```text
+Immutable
+Ordered
+Duplicates allowed
+Uses ()
+```
+
+## Set
+
+```text
+Unique values
+Duplicates removed
+Useful for comparisons
+Uses {}
+```
+
+## Dictionary
+
+```text
+Key-value pairs
+Access using keys
+Useful for structured data
+Uses {}
+```
+
+### Quick Comparison
+
+| Data Structure | Ordered             | Mutable | Duplicates | Main Use                      |
+| -------------- | ------------------- | ------- | ---------- | ----------------------------- |
+| List           | Yes                 | Yes     | Yes        | Changing collections          |
+| Tuple          | Yes                 | No      | Yes        | Fixed data                    |
+| Set            | No guaranteed order | Yes     | No         | Unique values and comparisons |
+| Dictionary     | Insertion order     | Yes     | Keys: No   | Key-value structured data     |
+
+---
+
+# 🧪 Day 3 Practice Files
+
+```text
+01-python/
+├── day03_tuples_sets_dict.py
+└── day03_project.py
+```
+
+### day03_tuples_sets_dict.py
+
+Contains the hands-on exercises completed during Day 3.
+
+### day03_project.py
+
+Contains the final AI Model Registry mini-project.
+
+---
+
+# ✅ Day 3 Completion
+
+**Status: COMPLETED**
+
+- [X] Tuples
+- [X] Tuple indexing
+- [X] Tuple slicing
+- [X] Tuple immutability
+- [X] Tuple unpacking
+- [X] `count()`
+- [X] `index()`
+- [X] Sets
+- [X] Set uniqueness
+- [X] `add()`
+- [X] `remove()`
+- [X] `discard()`
+- [X] Union
+- [X] Intersection
+- [X] Difference
+- [X] Dictionaries
+- [X] Key-value pairs
+- [X] Adding dictionary data
+- [X] Updating dictionary data
+- [X] `pop()`
+- [X] `del`
+- [X] `clear()`
+- [X] `keys()`
+- [X] `values()`
+- [X] `items()`
+- [X] Dictionary loops
+- [X] Nested dictionaries
+- [X] AI Model Registry mini-project
+
+---
+
+# 🎯 Day 3 Learning Principle
+
+> **Choose the data structure based on the problem: List for changing collections, Tuple for fixed data, Set for unique values, and Dictionary for structured key-value data.**
+
+The goal is to move from:
+
+**Syntax → Data Structures → Logic → Problem Solving → AI/ML Engineering**
+
+---
+
+# 🔜 Next — Day 4
+
+## Python Functions
+
+Upcoming topics:
+
+- Defining functions
+- Parameters
+- Arguments
+- Return values
+- Default parameters
+- Multiple parameters
+- Function scope
+- Reusable functions
+- Practical AI/ML functions
+- Mini-project
