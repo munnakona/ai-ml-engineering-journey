@@ -1570,8 +1570,6 @@ Upcoming topics:
 - Lists vs Tuples vs Sets vs Dictionaries
 - Practical AI/ML examples
 
-
-
 # Day 3 — Tuples, Sets & Dictionaries
 
 > **Focus:** Understanding Python Tuples, Sets, and Dictionaries through hands-on practice and an AI Model Registry mini-project.
@@ -2400,4 +2398,658 @@ Upcoming topics:
 - Function scope
 - Reusable functions
 - Practical AI/ML functions
+- Mini-project
+
+
+
+# Day 4 — Python Functions
+
+> **Focus:** Building reusable Python functions and applying them to AI/ML model data.
+
+## 🎯 Objective
+
+Day 4 focused on understanding Python functions and how reusable functions can simplify AI/ML programs.
+
+The main goal was to move from writing repeated code to creating reusable building blocks that accept data, process it, and return results.
+
+---
+
+# 1. Creating a Function
+
+A function is a reusable block of code.
+
+```python
+def greet():
+    print("Hello Munna!")
+
+greet()
+```
+
+Key idea:
+
+```text
+def → Define the function
+greet() → Call the function
+```
+
+Defining a function does not execute it. The function runs when it is called.
+
+---
+
+# 2. Functions with Parameters
+
+A parameter is a variable defined inside a function.
+
+```python
+def learn_topic(topic):
+    print("Today I am learning:", topic)
+
+learn_topic("Python")
+learn_topic("Machine Learning")
+learn_topic("Generative AI")
+learn_topic("LangChain")
+```
+
+Output:
+
+```text
+Today I am learning: Python
+Today I am learning: Machine Learning
+Today I am learning: Generative AI
+Today I am learning: LangChain
+```
+
+### Parameter vs Argument
+
+```text
+Parameter → Placeholder inside function definition
+Argument  → Actual value passed to the function
+```
+
+---
+
+# 3. Multiple Parameters
+
+```python
+def show_ai_model(name, provider, model_type):
+    print("Model:", name)
+    print("Provider:", provider)
+    print("Type:", model_type)
+
+show_ai_model("GPT", "OpenAI", "LLM")
+show_ai_model("Claude", "Anthropic", "LLM")
+show_ai_model("Gemini", "Google", "LLM")
+show_ai_model("Llama", "Meta", "LLM")
+```
+
+The order of positional arguments matters.
+
+---
+
+# 4. return vs print()
+
+```python
+def add_numbers(a, b):
+    return a + b
+
+result = add_numbers(10, 20)
+print("Sum:", result)
+```
+
+Output:
+
+```text
+Sum: 30
+```
+
+### Key Difference
+
+```text
+print()  → Displays a value
+return   → Sends a value back to the caller
+```
+
+`return` is important when a result needs to be stored, reused, passed to another function, or processed further.
+
+---
+
+# 5. Functions That Process Lists
+
+```python
+def calculate_model_count(models):
+    return len(models)
+
+ai_models = [
+    "GPT",
+    "Claude",
+    "Gemini",
+    "Llama"
+]
+
+count = calculate_model_count(ai_models)
+
+print("Total AI Models:", count)
+```
+
+Output:
+
+```text
+Total AI Models: 4
+```
+
+Other reusable functions:
+
+```python
+def get_first_model(models):
+    return models[0]
+
+def get_last_model(models):
+    return models[-1]
+```
+
+Output:
+
+```text
+First AI Model: GPT
+Last AI Model: Llama
+```
+
+---
+
+# 6. Functions That Process Dictionaries
+
+```python
+def get_model_name(model):
+    return model["name"]
+
+def get_model_type(model):
+    return model["type"]
+```
+
+Example:
+
+```python
+ai_model = {
+    "name": "GPT-5",
+    "provider": "OpenAI",
+    "type": "LLM"
+}
+
+print("Model Name:", get_model_name(ai_model))
+print("Model Type:", get_model_type(ai_model))
+```
+
+Output:
+
+```text
+Model Name: GPT-5
+Model Type: LLM
+```
+
+---
+
+# 7. Default Parameters
+
+```python
+def introduce_ai_engineer(
+    name="Munna",
+    role="AI/ML Engineer"
+):
+    print("Name:", name)
+    print("Role:", role)
+```
+
+Calling without arguments uses the defaults:
+
+```python
+introduce_ai_engineer()
+```
+
+Calling with arguments overrides the defaults:
+
+```python
+introduce_ai_engineer(
+    "Munna",
+    "Generative AI Engineer"
+)
+```
+
+### Key Concept
+
+```text
+Argument provided → Use provided value
+No argument       → Use default value
+```
+
+---
+
+# 8. Keyword Arguments
+
+Arguments can be supplied using parameter names.
+
+```python
+introduce_ai_engineer(
+    role="Generative AI Engineer",
+    name="Munna"
+)
+```
+
+The order does not matter when using keyword arguments.
+
+```text
+Positional arguments → Depend on order
+Keyword arguments    → Depend on parameter name
+```
+
+---
+
+# 9. Local and Global Scope
+
+A variable created inside a function is normally a local variable.
+
+```python
+def learn_topic():
+    topic = "Generative AI"
+    print("Inside function:", topic)
+
+learn_topic()
+```
+
+Trying to access `topic` outside the function produces:
+
+```text
+NameError: name 'topic' is not defined
+```
+
+A variable created outside the function can be accessed from the surrounding/global scope.
+
+```python
+topic = "Generative AI"
+
+def learn_topic():
+    print("Inside function:", topic)
+
+learn_topic()
+print("Outside function:", topic)
+```
+
+### Key Concept
+
+```text
+Local variable
+→ Created inside a function
+→ Normally accessible only inside that function
+
+Global variable
+→ Created outside a function
+→ Available from the surrounding/global scope
+```
+
+For reusable AI/ML code, prefer passing data into functions through parameters and returning results rather than relying heavily on global variables.
+
+---
+
+# 10. Functions + Nested Dictionaries
+
+Using the AI Model Registry:
+
+```python
+ai_models = {
+    "GPT": {
+        "provider": "OpenAI",
+        "type": "LLM"
+    },
+    "Claude": {
+        "provider": "Anthropic",
+        "type": "LLM"
+    },
+    "Gemini": {
+        "provider": "Google",
+        "type": "LLM"
+    },
+    "Llama": {
+        "provider": "Meta",
+        "type": "LLM"
+    }
+}
+```
+
+Reusable provider function:
+
+```python
+def get_provider(models, model_name):
+    return models[model_name]["provider"]
+```
+
+Usage:
+
+```python
+print("GPT Provider:", get_provider(ai_models, "GPT"))
+print("Claude Provider:", get_provider(ai_models, "Claude"))
+print("Gemini Provider:", get_provider(ai_models, "Gemini"))
+print("Llama Provider:", get_provider(ai_models, "Llama"))
+```
+
+Output:
+
+```text
+GPT Provider: OpenAI
+Claude Provider: Anthropic
+Gemini Provider: Google
+Llama Provider: Meta
+```
+
+---
+
+# 11. Functions + Loops + Dictionaries
+
+Reusable display function:
+
+```python
+def display_models(models):
+
+    for model, details in models.items():
+        print("Model:", model)
+        print("Provider:", details["provider"])
+        print("Type:", details["type"])
+        print()
+```
+
+Call it:
+
+```python
+display_models(ai_models)
+```
+
+This combines:
+
+```text
+Function
++
+Dictionary
++
+Nested Dictionary
++
+items()
++
+for Loop
+```
+
+---
+
+# 12. Returning a List from a Function
+
+A key debugging lesson from Day 4 was understanding where `return` belongs.
+
+Incorrect:
+
+```python
+def get_model_names(models):
+    model_names = []
+
+    for model in models:
+        return model_names
+```
+
+The `return` executes during the first iteration.
+
+Correct:
+
+```python
+def get_model_names(models):
+    model_names = []
+
+    for model in models:
+        model_names.append(model)
+
+    return model_names
+```
+
+Usage:
+
+```python
+model_names = get_model_names(ai_models)
+print("Model Names:", model_names)
+```
+
+Output:
+
+```text
+Model Names: ['GPT', 'Claude', 'Gemini', 'Llama']
+```
+
+### Key Lesson
+
+```text
+Create result
+    ↓
+Loop through data
+    ↓
+Build result
+    ↓
+Return after the loop
+```
+
+---
+
+# 🚀 Day 4 Mini Project — AI Model Utility
+
+## Objective
+
+Build a reusable utility for working with AI model information.
+
+The utility can:
+
+1. Display all AI models
+2. Count AI models
+3. Find a model's provider
+4. Return model names
+
+### Final Project Code
+
+```python
+ai_models = {
+    "GPT": {
+        "provider": "OpenAI",
+        "type": "LLM"
+    },
+    "Claude": {
+        "provider": "Anthropic",
+        "type": "LLM"
+    },
+    "Gemini": {
+        "provider": "Google",
+        "type": "LLM"
+    },
+    "Llama": {
+        "provider": "Meta",
+        "type": "LLM"
+    }
+}
+
+
+def display_models(models):
+
+    for model, details in models.items():
+        print("Model:", model)
+        print("Provider:", details["provider"])
+        print("Type:", details["type"])
+        print()
+
+
+def count_models(models):
+    return len(models)
+
+
+def get_provider(models, model_name):
+    return models[model_name]["provider"]
+
+
+def get_model_names(models):
+    model_names = []
+
+    for model in models:
+        model_names.append(model)
+
+    return model_names
+
+
+print("===== AI MODEL UTILITY =====")
+
+display_models(ai_models)
+
+print("===== SUMMARY =====")
+
+total_ai_models = count_models(ai_models)
+
+print("Total AI Models:", total_ai_models)
+print("GPT Provider:", get_provider(ai_models, "GPT"))
+print("Gemini Provider:", get_provider(ai_models, "Gemini"))
+
+model_names = get_model_names(ai_models)
+
+print("Model Names:", model_names)
+```
+
+### Final Output
+
+```text
+===== AI MODEL UTILITY =====
+
+Model: GPT
+Provider: OpenAI
+Type: LLM
+
+Model: Claude
+Provider: Anthropic
+Type: LLM
+
+Model: Gemini
+Provider: Google
+Type: LLM
+
+Model: Llama
+Provider: Meta
+Type: LLM
+
+===== SUMMARY =====
+Total AI Models: 4
+GPT Provider: OpenAI
+Gemini Provider: Google
+Model Names: ['GPT', 'Claude', 'Gemini', 'Llama']
+```
+
+---
+
+# 🧠 Day 4 Key Lessons
+
+```text
+Function
+    ↓
+Reusable block of code
+
+Parameter
+    ↓
+Placeholder for input
+
+Argument
+    ↓
+Actual value passed to function
+
+return
+    ↓
+Sends result back to caller
+
+Default parameter
+    ↓
+Fallback value
+
+Keyword argument
+    ↓
+Pass value using parameter name
+
+Local variable
+    ↓
+Exists inside function
+
+Global variable
+    ↓
+Exists outside function
+
+Function + Data Structure
+    ↓
+Reusable AI/ML utilities
+```
+
+---
+
+# 🧪 Day 4 Practice Files
+
+```text
+01-python/
+├── day04_functions.py
+└── day04_project.py
+```
+
+### day04_functions.py
+
+Contains the hands-on exercises completed while learning Python Functions.
+
+### day04_project.py
+
+Contains the final AI Model Utility mini-project.
+
+---
+
+# ✅ Day 4 Completion
+
+**Status: COMPLETED**
+
+- [X] Function definition
+- [X] Function calling
+- [X] Parameters
+- [X] Arguments
+- [X] Multiple parameters
+- [X] `return`
+- [X] `print()` vs `return`
+- [X] Default parameters
+- [X] Keyword arguments
+- [X] Local variables
+- [X] Global variables
+- [X] Functions with Lists
+- [X] Functions with Dictionaries
+- [X] Functions + Loops
+- [X] Nested Dictionary processing
+- [X] Reusable utility functions
+- [X] AI Model Utility mini-project
+
+---
+
+# 🎯 Day 4 Learning Principle
+
+> **Write reusable functions instead of repeating logic. A good function accepts data, performs one clear task, and returns a useful result.**
+
+The goal is to move from:
+
+**Syntax → Data Structures → Functions → Reusable Logic → AI/ML Engineering**
+
+---
+
+# 🔜 Next — Day 5
+
+## Python Modules, Imports & Error Handling
+
+Upcoming topics:
+
+- Python modules
+- `import`
+- Built-in modules
+- Creating your own modules
+- Reusing functions across files
+- `try`
+- `except`
+- `else`
+- `finally`
+- Handling common Python errors
+- Practical AI/ML utility module
 - Mini-project
